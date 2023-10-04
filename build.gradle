@@ -9,8 +9,14 @@ group = 'co.edu.unisabana'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
+apply plugin: 'application'
+apply plugin: 'com.bmuschko.docker-java-application'
+
+mainClassName = 'hello.Application'
+
 repositories {
     mavenCentral()
+    jcenter()
 }
 jacoco {
     toolVersion = "0.8.8"
@@ -53,8 +59,22 @@ buildscript {
            classpath 'com.bmuschko:gradle-docker-plugin:4.3.0'
         }
     }
+jar {
+    enabled = true
+    baseName = 'gs-accessing-data-rest'
+    version = '0.1.0'
+}
 
 
 tasks.named('test') {
     useJUnitPlatform()
 }
+docker {
+    javaApplication {
+        baseImage = 'parcial2SD'
+        maintainer = 'Sebastian y David'
+        ports = [8080]
+        tag = 'https://github.com/David-Galeano-USabana/23-2-parcial-DavidSebastian'
+    }
+}
+
