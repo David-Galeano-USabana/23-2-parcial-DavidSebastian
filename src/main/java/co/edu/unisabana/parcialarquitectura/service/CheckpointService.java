@@ -2,16 +2,13 @@ package co.edu.unisabana.parcialarquitectura.service;
 
 import co.edu.unisabana.parcialarquitectura.controller.dto.CheckpointDTO;
 import co.edu.unisabana.parcialarquitectura.service.model.Checkin;
-import co.edu.unisabana.parcialarquitectura.repository.CheckpointPort;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 
 @Service
 @AllArgsConstructor
-public class CheckpointService {
-
-  private CheckpointPort checkpointPort;
+public class CheckpointService implements ICheckpointService{
 
   public void checkin(CheckpointDTO checkpoint) {
     if (checkpoint.dayOfMonth > 30 || checkpoint.dayOfMonth < 1) {
